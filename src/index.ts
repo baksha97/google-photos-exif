@@ -101,13 +101,17 @@ class GooglePhotosExif extends Command {
       description: 'Show per-file log output (default: only progress bar + summary)',
       default: false,
     }),
+    resume: flags.boolean({
+      description: 'Resume a previously interrupted copy-mode run. Skips files already present in --outputDir rather than requiring it to be empty.',
+      default: false,
+    }),
   }
 
   static args: Parser.args.Input = []
 
   async run() {
     const { args, flags } = this.parse(GooglePhotosExif);
-    const { inputDir, outputDir, errorDir, inPlace, dryRun, yes, verbose } = flags;
+    const { inputDir, outputDir, errorDir, inPlace, dryRun, yes, verbose, resume } = flags;
     let { concurrency } = flags;
 
     if (dryRun) {
@@ -123,7 +127,7 @@ class GooglePhotosExif extends Command {
       }
     }
 
-    const directories = this.determineDirectoryPaths(inputDir, outputDir, errorDir, inPlace, dryRun);
+    const directories = this.determineDirectoryPaths(inputDir, outputDir, errorDir, inPlace, dryRun, resume);
     await this.prepareDirectories(directories);
 
     this.log('--- Scanning for media files ---');
@@ -141,12 +145,13 @@ class GooglePhotosExif extends Command {
     this.exit(0);
   }
 
-  private determineDirectoryPaths(inputDir: string, outputDir: string | undefined, errorDir: string | undefined, inPlace: boolean, dryRun: boolean): Directories {
+  private determineDirectoryPaths(inputDir: string, outputDir: string | undefined, errorDir: string | undefined, inPlace: boolean, dryRun: boolean, resume: boolean): Directories {
     return {
       input: inputDir,
       output: outputDir,
       inPlace: inPlace,
       dryRun: dryRun,
+      resume: resume,
       error: errorDir,
     };
   }
@@ -168,12 +173,12 @@ class GooglePhotosExif extends Command {
       throw new Error('You must specify an error directory using the --errorDir flag unless you use --inPlace');
     }
 
-    if (!directories.dryRun) {
+    if (!directories.dryRun && !directories.resume) {
       if (directories.output) {
-        await this.checkDirIsEmptyAndCreateDirIfNotFound(directories.output, 'If the output directory already exists, it must be empty');
+        await this.checkDirIsEmptyAndCreateDirIfNotFound(directories.output, 'If the output directory already exists, it must be empty. Use --resume to continue a previous run.');
       }
       if (directories.error) {
-        await this.checkDirIsEmptyAndCreateDirIfNotFound(directories.error, 'If the error directory already exists, it must be empty');
+        await this.checkDirIsEmptyAndCreateDirIfNotFound(directories.error, 'If the error directory already exists, it must be empty. Use --resume to continue a previous run.');
       }
     }
   }
@@ -214,8 +219,9 @@ class GooglePhotosExif extends Command {
     if (directories.inPlace) {
       if (verbose) this.log(`[${idx}] Modifying file in-place: ${mediaFile.mediaFilePath}`);
     } else {
-      if (verbose) this.log(`[${idx}] Copying file: ${mediaFile.mediaFilePath} -> ${mediaFile.outputFileName}`);
-      if (!directories.dryRun) {
+      const alreadyCopied = directories.resume && existsSync(mediaFile.outputFilePath);
+      if (verbose) this.log(`[${idx}] ${alreadyCopied ? 'Resuming' : 'Copying'} file: ${mediaFile.mediaFilePath} -> ${mediaFile.outputFileName}`);
+      if (!directories.dryRun && !alreadyCopied) {
         await copyFile(mediaFile.mediaFilePath, mediaFile.outputFilePath);
       }
     }

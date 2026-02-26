@@ -3,7 +3,11 @@ import { basename, dirname, extname, resolve, join } from 'path'
 import { globSync } from "glob";
 import { platform } from 'os'
 
-function isWindows() {  
+// Google Takeout truncates the supplemental-metadata JSON stem to this length
+const SUPPLEMENTAL_METADATA_SUFFIX = '.supplemental-metadata';
+const SUPPLEMENTAL_METADATA_MAX_STEM_LENGTH = 46;
+
+function isWindows() {
   return platform() === 'win32'
 }
 
@@ -24,6 +28,13 @@ export function getCompanionJsonPathForMediaFile(mediaFilePath: string): string|
     `${mediaFileNameWithoutExtension}.supplemental-metadata.json`,
     `${mediaFileNameWithoutExtension}${mediaFileExtension}.supplemental-metadata.json`,
   ];
+
+  // For long filenames, Google truncates the supplemental-metadata stem to SUPPLEMENTAL_METADATA_MAX_STEM_LENGTH chars.
+  // e.g. a long `foo.jpg.supplemental-metadata` stem gets written as `foo.jpg.supplemental-metadat` (46 chars) + `.json`
+  const fullSupplementalStem = `${mediaFileNameWithoutExtension}${mediaFileExtension}${SUPPLEMENTAL_METADATA_SUFFIX}`;
+  if (fullSupplementalStem.length > SUPPLEMENTAL_METADATA_MAX_STEM_LENGTH) {
+    potentialJsonFileNames.push(`${fullSupplementalStem.slice(0, SUPPLEMENTAL_METADATA_MAX_STEM_LENGTH)}.json`);
+  }
 
   // Another edge case which seems to be quite inconsistent occurs when we have media files containing a number suffix for example "foo(1).jpg"
   // In this case, we don't get "foo(1).json" nor "foo(1).jpg.json". Instead, we strangely get "foo.jpg(1).json".
