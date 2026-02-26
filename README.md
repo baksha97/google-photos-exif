@@ -17,18 +17,18 @@ A tool to populate missing `DateTimeOriginal` EXIF metadata in Google Photos tak
 
 ## Quick Start
 
-Example usage:
-
 ```
 yarn
 yarn start --inputDir ~/takeout --outputDir ~/output --errorDir ~/error
 ```
 
-To update files in-place instead of copying them to an output directory, use the `--inPlace` flag (this will ignore `--outputDir`):
+To update files in-place instead of copying them to an output directory:
 
 ```
-yarn start --inputDir ~/takeout --inPlace --errorDir ~/error
+yarn start --inputDir ~/takeout --inPlace
 ```
+
+A progress bar is shown by default. Use `--verbose` for per-file log output instead. Use `--concurrency` to control parallelism (default: number of CPU cores, capped at 8).
 
 
 ## Background
@@ -101,10 +101,16 @@ The first step to using this tool is to request & download a `Google Takeout`. A
 
 The tool takes in the following parameters:
 
-1. an `inputDir` directory path containing the extracted Google Takeout.
-2. an `outputDir` directory path where processed files will be moved to. This needs to be an empty directory and can be anywhere on the disk. (Can be omitted if using `--inPlace`)
-3. an `errorDir` directory path where images with bad EXIF data that fail to process will be moved to. The folder can be empty.
-4. an optional `--inPlace` flag to update the files in the input directory instead of copying them to an output directory. If this flag is used, you do not need to provide an `outputDir`.
+| Flag | Description | Required |
+|------|-------------|----------|
+| `--inputDir` / `-i` | Directory containing the extracted Google Takeout | Always |
+| `--outputDir` / `-o` | Empty directory where processed files will be written | Required unless `--inPlace` |
+| `--errorDir` / `-e` | Directory where files with EXIF write errors are copied for manual inspection | Required unless `--inPlace` |
+| `--inPlace` | Modify files directly inside `--inputDir` instead of copying. Generates an `in-place-report.md` in the input directory summarising every change made. | Optional |
+| `--yes` / `-y` | Skip the confirmation prompt when using `--inPlace` | Optional |
+| `--dryRun` | Simulate a run without modifying any files. Writes a `dry-run-report.md` to the input directory. | Optional |
+| `--concurrency` / `-c` | Number of files to process in parallel. Defaults to CPU count (capped at 8). | Optional |
+| `--verbose` | Show per-file log output. When set, the progress bar is suppressed. | Optional |
 
 The `inputDir` needs to be a single directory containing an _extracted_ zip from Google takeout. As described in the section above, it is important that the zip has been extracted into a directory (this tool doesn't extract zips for you) and that it is a single folder containing the whole Takeout (or if coming from multiple archives, that they have been properly merged together). 
 
@@ -142,21 +148,23 @@ The default configuration is as follows:
 ## What does the tool do?
 
 The tool will do the following:
-1. Find all "media files" with one of the supported extensions (see "Configuring supported file types" above) from the (nested) `inputDir` folder structure.
-  
-2. For each "media file":
-   
+1. Scan `inputDir` recursively to count all supported media files, then display a live progress bar.
+
+2. Process files concurrently (up to `--concurrency` workers). For each media file:
+
    a. Look for a corresponding sidecar JSON metadata file (see the section below for more on this) and if found, read the `photoTakenTime` field
-   
-   b. Copy the media file to the output directory
+
+   b. Copy the media file to the output directory (skipped when using `--inPlace`)
 
    c. Update the file modification date to the `photoTakenTime` found in the JSON metadata
-   
-   d. If the file supports EXIF (e.g. JPEG images), read the EXIF metadata and write the `DateTimeOriginal` field if it does not already have a value in this field 
 
-   e. If an error occurs whilst processing the file, copy it to the directory specified in the `errorDir` argument, so that it can be inspected manually or removed
+   d. If the file supports EXIF (e.g. JPEG images), read the EXIF metadata and write the `DateTimeOriginal` field if it does not already have a value
+
+   e. If an EXIF write error occurs and `--errorDir` is specified, copy the file and its JSON sidecar to `errorDir` for manual inspection
 
 3. Display a summary of work completed
+
+4. When using `--inPlace`, write an `in-place-report.md` to `inputDir` detailing every file processed, the timestamp applied, whether the mod time was updated, and the EXIF outcome.
 
 ## How are media files matched to JSON sidecar files?
 

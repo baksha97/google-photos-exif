@@ -8,7 +8,7 @@ export async function updateFileModificationDate(filePath: string, timeTaken: st
   try {
     await utimes(filePath, time, time);
   } catch (error) {
-    const fh = await open(filePath, 'w');
+    const fh = await open(filePath, 'a');
     await fh.close();
   }
 }

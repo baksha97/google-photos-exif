@@ -198,12 +198,14 @@ class GooglePhotosExif extends Command {
     directories: Directories,
     exiftoolInstance: ExifTool,
     verbose: boolean,
-    bar: SingleBar,
+    bar: SingleBar | null,
     fileNamesWithEditedExif: string[],
     mediaFileCountsByExtension: Map<string, number>,
     reportPath: string | undefined,
     fileIndex: { value: number },
     inPlaceResults: InPlaceResult[] | undefined,
+    startTime: number,
+    completedCount: { value: number },
   ): Promise<void> {
     const idx = ++fileIndex.value;
     const ext = mediaFile.mediaFileExtension.toLowerCase();
@@ -280,7 +282,10 @@ class GooglePhotosExif extends Command {
       }
     }
 
-    bar.increment();
+    const count = ++completedCount.value;
+    const elapsed = (Date.now() - startTime) / 1000;
+    const speed = elapsed > 0 ? (count / elapsed).toFixed(1) : 'N/A';
+    bar?.increment(1, { speed });
   }
 
   private async processMediaFiles(
@@ -310,15 +315,17 @@ class GooglePhotosExif extends Command {
     const mediaFileCountsByExtension = new Map<string, number>();
     supportedMediaFileExtensions.forEach(ext => mediaFileCountsByExtension.set(ext, 0));
 
-    const bar = new SingleBar({
+    const bar = verbose ? null : new SingleBar({
       format: 'Progress |{bar}| {value}/{total} ({percentage}%) | ETA: {eta_formatted} | {speed} files/s',
       etaBuffer: 50,
       clearOnComplete: false,
       hideCursor: true,
     }, Presets.shades_classic);
 
-    bar.start(totalFileCount, 0, { speed: 'N/A' });
+    bar?.start(totalFileCount, 0, { speed: 'N/A' });
 
+    const startTime = Date.now();
+    const completedCount = { value: 0 };
     const sem = new Semaphore(concurrency);
     const inFlight: Promise<void>[] = [];
 
@@ -338,12 +345,14 @@ class GooglePhotosExif extends Command {
           dryRunReportPath,
           fileIndex,
           inPlaceResults,
+          startTime,
+          completedCount,
         ).finally(() => sem.release())
       );
     }
 
     await Promise.all(inFlight);
-    bar.stop();
+    bar?.stop();
 
     if (inPlaceResults) {
       await this.writeInPlaceReport(directories.input, inPlaceResults);
