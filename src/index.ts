@@ -2,7 +2,7 @@ import { Command, flags } from '@oclif/command';
 import * as Parser from '@oclif/parser';
 import { existsSync, promises as fspromises } from 'fs';
 import { createInterface } from 'readline';
-import { parse, resolve } from 'path';
+import { resolve } from 'path';
 import * as os from 'os';
 import { SingleBar, Presets } from 'cli-progress';
 import { ExifTool } from 'exiftool-vendored';
@@ -17,6 +17,15 @@ import { Directories } from './models/directories';
 import { MediaFileInfo } from './models/media-file-info';
 
 const { readdir, mkdir, copyFile, writeFile, appendFile } = fspromises;
+
+type ExifResult = 'updated' | 'already-set' | 'error' | 'no-support' | 'skipped';
+
+interface InPlaceResult {
+  filePath: string;
+  photoTimeTaken: string | null;
+  modTimeUpdated: boolean;
+  exifResult: ExifResult;
+}
 
 class Semaphore {
   private queue: (() => void)[] = [];
@@ -80,8 +89,8 @@ class GooglePhotosExif extends Command {
     }),
     errorDir: flags.string({
       char: 'e',
-      description: 'Directory for any files that have bad EXIF data - including the matching metadata files',
-      required: true,
+      description: 'Directory for any files that have bad EXIF data - including the matching metadata files. Required unless --inPlace is used.',
+      required: false,
     }),
     concurrency: flags.integer({
       char: 'c',
@@ -132,7 +141,7 @@ class GooglePhotosExif extends Command {
     this.exit(0);
   }
 
-  private determineDirectoryPaths(inputDir: string, outputDir: string | undefined, errorDir: string, inPlace: boolean, dryRun: boolean): Directories {
+  private determineDirectoryPaths(inputDir: string, outputDir: string | undefined, errorDir: string | undefined, inPlace: boolean, dryRun: boolean): Directories {
     return {
       input: inputDir,
       output: outputDir,
@@ -155,15 +164,17 @@ class GooglePhotosExif extends Command {
       throw new Error('You must specify an output directory using the --outputDir flag unless you use --inPlace');
     }
 
-    if (!directories.error) {
-      throw new Error('You must specify an error directory using the --errorDir flag');
+    if (!directories.inPlace && !directories.error) {
+      throw new Error('You must specify an error directory using the --errorDir flag unless you use --inPlace');
     }
 
     if (!directories.dryRun) {
       if (directories.output) {
         await this.checkDirIsEmptyAndCreateDirIfNotFound(directories.output, 'If the output directory already exists, it must be empty');
       }
-      await this.checkDirIsEmptyAndCreateDirIfNotFound(directories.error, 'If the error directory already exists, it must be empty');
+      if (directories.error) {
+        await this.checkDirIsEmptyAndCreateDirIfNotFound(directories.error, 'If the error directory already exists, it must be empty');
+      }
     }
   }
 
@@ -192,6 +203,7 @@ class GooglePhotosExif extends Command {
     mediaFileCountsByExtension: Map<string, number>,
     reportPath: string | undefined,
     fileIndex: { value: number },
+    inPlaceResults: InPlaceResult[] | undefined,
   ): Promise<void> {
     const idx = ++fileIndex.value;
     const ext = mediaFile.mediaFileExtension.toLowerCase();
@@ -211,18 +223,27 @@ class GooglePhotosExif extends Command {
     if (photoTimeTaken) {
       let needsExifUpdate = false;
       const needsModTimeUpdate = true;
+      let exifResult: ExifResult = 'no-support';
 
       if (mediaFile.supportsExif) {
         const hasExifDate = await doesFileHaveExifDate(mediaFile.mediaFilePath, exiftoolInstance);
         if (!hasExifDate) {
           needsExifUpdate = true;
-          fileNamesWithEditedExif.push(mediaFile.outputFileName);
           if (!directories.dryRun) {
-            await updateExifMetadata(mediaFile, photoTimeTaken, directories.error, exiftoolInstance);
-            if (verbose) this.log(`Wrote "DateTimeOriginal" EXIF metadata to: ${mediaFile.outputFileName}`);
+            const exifSuccess = await updateExifMetadata(mediaFile, photoTimeTaken, directories.error, exiftoolInstance);
+            if (exifSuccess) {
+              exifResult = 'updated';
+              fileNamesWithEditedExif.push(mediaFile.outputFileName);
+              if (verbose) this.log(`Wrote "DateTimeOriginal" EXIF metadata to: ${mediaFile.outputFileName}`);
+            } else {
+              exifResult = 'error';
+            }
           } else {
+            exifResult = 'updated'; // would be updated
             if (verbose) this.log(`[DRY RUN] Would write "DateTimeOriginal" EXIF metadata to: ${mediaFile.outputFileName}`);
           }
+        } else {
+          exifResult = 'already-set';
         }
       }
 
@@ -234,10 +255,28 @@ class GooglePhotosExif extends Command {
         const row = `| \`${mediaFile.mediaFilePath}\` | \`${directories.inPlace ? 'IN-PLACE' : mediaFile.outputFilePath}\` | ${needsExifUpdate ? '✅ Yes' : '❌ No'} | ${needsModTimeUpdate ? '✅ Yes' : '❌ No'} |\n`;
         await appendFile(reportPath, row);
       }
+
+      if (inPlaceResults) {
+        inPlaceResults.push({
+          filePath: mediaFile.mediaFilePath,
+          photoTimeTaken,
+          modTimeUpdated: true,
+          exifResult,
+        });
+      }
     } else {
       if (directories.dryRun && reportPath) {
         const row = `| \`${mediaFile.mediaFilePath}\` | \`${directories.inPlace ? 'IN-PLACE' : mediaFile.outputFilePath}\` | ❌ No (No JSON) | ❌ No (No JSON) |\n`;
         await appendFile(reportPath, row);
+      }
+
+      if (inPlaceResults) {
+        inPlaceResults.push({
+          filePath: mediaFile.mediaFilePath,
+          photoTimeTaken: null,
+          modTimeUpdated: false,
+          exifResult: 'skipped',
+        });
       }
     }
 
@@ -253,13 +292,18 @@ class GooglePhotosExif extends Command {
   ): Promise<void> {
     const fileNamesWithEditedExif: string[] = [];
     const fileIndex = { value: 0 };
-    let reportPath: string | undefined;
+    let dryRunReportPath: string | undefined;
+    let inPlaceResults: InPlaceResult[] | undefined;
 
     if (directories.dryRun) {
-      reportPath = resolve(directories.input, 'dry-run-report.md');
+      dryRunReportPath = resolve(directories.input, 'dry-run-report.md');
       const header = `# Dry Run Report\n\nRun with \`--dryRun\` flag. The following actions would be taken:\n\n| Source File | Target / In-Place Path | Needs EXIF Update | Needs ModTime Update |\n|-------------|-------------------------|-------------------|----------------------|\n`;
-      await writeFile(reportPath, header);
-      this.log(`\n--- Dry Run Report started at ${reportPath} ---`);
+      await writeFile(dryRunReportPath, header);
+      this.log(`\n--- Dry Run Report started at ${dryRunReportPath} ---`);
+    }
+
+    if (directories.inPlace && !directories.dryRun) {
+      inPlaceResults = [];
     }
 
     const supportedMediaFileExtensions = CONFIG.supportedMediaFileTypes.map(fileType => fileType.extension);
@@ -291,14 +335,19 @@ class GooglePhotosExif extends Command {
           bar,
           fileNamesWithEditedExif,
           mediaFileCountsByExtension,
-          reportPath,
+          dryRunReportPath,
           fileIndex,
+          inPlaceResults,
         ).finally(() => sem.release())
       );
     }
 
     await Promise.all(inFlight);
     bar.stop();
+
+    if (inPlaceResults) {
+      await this.writeInPlaceReport(directories.input, inPlaceResults);
+    }
 
     this.log(`--- Finished processing media files: ---`);
     mediaFileCountsByExtension.forEach((count, extension) => {
@@ -313,8 +362,42 @@ class GooglePhotosExif extends Command {
     }
 
     if (directories.dryRun) {
-      this.log(`\n--- Dry Run Report completed and saved at ${reportPath!} ---`);
+      this.log(`\n--- Dry Run Report completed and saved at ${dryRunReportPath!} ---`);
     }
+  }
+
+  private async writeInPlaceReport(inputDir: string, results: InPlaceResult[]): Promise<void> {
+    const reportPath = resolve(inputDir, 'in-place-report.md');
+    const runDate = new Date().toISOString();
+
+    const exifLabel = (r: ExifResult): string => {
+      switch (r) {
+        case 'updated':     return '✅ Written';
+        case 'already-set': return '⬛ Already set';
+        case 'error':       return '❌ Error';
+        case 'no-support':  return '— (not supported)';
+        case 'skipped':     return '— (no JSON)';
+      }
+    };
+
+    const rows = results.map(r =>
+      `| \`${r.filePath}\` | ${r.photoTimeTaken ?? '—'} | ${r.modTimeUpdated ? '✅' : '❌'} | ${exifLabel(r.exifResult)} |`
+    ).join('\n');
+
+    const content = [
+      `# In-Place Modification Report`,
+      ``,
+      `Run on: ${runDate}  `,
+      `Total files processed: ${results.length}`,
+      ``,
+      `| File | Time Taken | Mod Time Updated | EXIF DateTimeOriginal |`,
+      `|------|------------|------------------|-----------------------|`,
+      rows,
+      ``,
+    ].join('\n');
+
+    await writeFile(reportPath, content);
+    this.log(`\n--- In-Place Report saved at ${reportPath} ---`);
   }
 }
 

@@ -11,7 +11,10 @@
       "Bash(gh pr create:*)",
       "Bash(yarn add:*)",
       "Bash(npx tsc:*)",
-      "Bash(node -e:*)"
+      "Bash(node -e:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr edit:*)"
     ]
   }
 }

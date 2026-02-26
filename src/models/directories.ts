@@ -3,5 +3,5 @@ export interface Directories {
   output?: string;
   inPlace: boolean;
   dryRun: boolean;
-  error: string;
+  error?: string;
 }
