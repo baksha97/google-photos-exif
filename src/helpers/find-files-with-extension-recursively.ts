@@ -1,9 +1,32 @@
-import { glob } from 'glob'
-import { join } from 'path'
+import { promises as fspromises } from 'fs';
+import { join, extname } from 'path';
 
-export async function findFilesWithExtensionRecursively(dirToSearch: string, extensionsToInclude: string[]): Promise<string[]> {
-  const extensionString = extensionsToInclude.length > 1 ? `{${extensionsToInclude}}` : `${extensionsToInclude}`
-  const globPattern = join(dirToSearch, '**\\*'+ extensionString);
-  const matchingFiles = glob(globPattern, {windowsPathsNoEscape:true})
-  return matchingFiles;
+const { readdir } = fspromises;
+
+const IGNORABLE_ERROR_CODES = new Set(['EACCES', 'ENOENT', 'EPERM']);
+
+export async function* findFilesWithExtensionRecursively(dirToSearch: string, extensionsToInclude: string[]): AsyncGenerator<string> {
+  const extensionSet = new Set(extensionsToInclude.map(ext => ext.toLowerCase()));
+
+  let entries;
+  try {
+    entries = await readdir(dirToSearch, { withFileTypes: true });
+  } catch (err: any) {
+    if (IGNORABLE_ERROR_CODES.has(err.code)) return;
+    throw err;
+  }
+
+  for (const entry of entries) {
+    if (entry.name === '.DS_Store' || entry.name.startsWith('._')) continue;
+    const fullPath = join(dirToSearch, entry.name);
+
+    if (entry.isDirectory()) {
+      yield* findFilesWithExtensionRecursively(fullPath, extensionsToInclude);
+    } else if (entry.isFile()) {
+      const ext = extname(entry.name).toLowerCase();
+      if (extensionSet.has(ext)) {
+        yield fullPath;
+      }
+    }
+  }
 }
