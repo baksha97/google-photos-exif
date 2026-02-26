@@ -1,0 +1,216 @@
+# Dry Run Report
+
+Run with `--dryRun` flag. The following actions would be taken:
+
+| Source File | Target / In-Place Path | Needs EXIF Update | Needs ModTime Update |
+|-------------|-------------------------|-------------------|----------------------|
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_2882.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_2896.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_2906.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_2908.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3445.JPG` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3466.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3470.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3471.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3493.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3495.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3497.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3542.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3543.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_3544.JPG` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4028.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4035.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4364.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4365.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4366.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4377.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4392.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4394.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4402.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4403.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4412.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4413.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4414.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_4564.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6029.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6157.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6181.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6273.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6338.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6478.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6478.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6494.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6731.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6732.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6733.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_6816.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_7594.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_7643.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_7643.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8192.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8193.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8194.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8195.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8196.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8197.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8198.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8199.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8204.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8205.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8206.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8212.JPG` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8213.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8214.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8215.JPG` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8217.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8219.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8224.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8225.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8228.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8229.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8242.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8255.JPG` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8256.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8257.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8264.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8264.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8269.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8270.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8271.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Archive/IMG_8276.PNG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/1635098064.mp4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/GX010270.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_0314.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_3326.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_3391.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_3484.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_3625.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_7258.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_7730.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_7797.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_8120.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_8250.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_8643.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_8967.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_9234.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/IMG_9529.MOV` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/Failed Videos/arslan threatening voicemail.mp4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/01HHTKXAHK4PX8GXJHXNVCP9KS-low-res-branded-.jpeg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/01HYRQEY1F62YQ854HSPX5XX7G-low-res-branded-.jpeg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/01J1JQYDKSXMES5RZAZMSDX8GA-low-res-branded-.jpeg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/0C94B4BC-06B2-4055-8C4C-399DEC5D12E4.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/0f6f28db-7ed0-428e-a267-6d214e1ac230.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/100_0544.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/100_0545.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/104_0704.jpeg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/10BBC963-E63B-427C-8841-967EEC039FBC.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/145c5b1d-c338-46f7-baec-819a6f506f3e.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/1D9575F2-ADA0-4897-83F5-002072B79004.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/1d5374a8-4a06-4419-8050-f19dd21ff822.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/2022-03-13 18_09_55.565.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/21FD6F93-21C8-44D9-98F9-564C0B493FBF.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/275C8619-8C38-4F67-B1C7-A6C5DD2B76BA.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/2c821a44-c91c-4ef6-b2d0-bca01d82ba19.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/35f3c7053458439e9220744626b367f3(1).mov` | `IN-PLACE` | ❌ No (No JSON) | ❌ No (No JSON) |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/35f3c7053458439e9220744626b367f3.mov` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/3863D556-A225-4FC4-8007-07017625272A.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/3B0E00D2-CF43-443D-A23C-554464F34C52.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/3e612867-45aa-4971-ba9d-20e60ebec396.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/4253155b-a5ab-43c1-a3cb-66d156eec487.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/42838685-C624-44D7-8D63-799F66547B86.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/49AD0CD3-D0FB-46B6-BC75-94AF6AF94775.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/5441d7dd-8ea9-48f2-8877-bd2bd6b2c4fe.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/576A21B6-0A48-4559-904A-8E2509360855.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/5d00d619-5ab7-4d85-a3a1-dc8986491c83.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/66af4dbf21144e0fa4102fc509b4c931.mov` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/68269409431__B4DB7178-807A-424C-8358-CB9E6A0C2.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/6889B4A1-F48A-460A-93A9-2712B74CB99F.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/69de026c-0834-426f-ba80-e6ea56858f08.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/6D43257F-3B1F-4257-84C6-6A72AA28D7AA.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/6c3f4123-8adb-49a1-b406-7f0e7cec44ff.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/71028517158__22F8CAE3-3570-42AF-960D-E211468DD.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/74A0E713-E2E6-49A4-8B54-DEE9EAD2455B.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/78365162543__A47E031B-4F34-49C7-A5F3-03B8DA4E5.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/79b68c3b-7b84-4939-ac2d-f994cbe066e7.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/7C64FC1C-64E0-42D1-939F-B76F0766E978.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/80799AA2-7674-4C86-90A8-23978A829864.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/80e4dbab-3ee2-4fb9-b2be-0d79a60d4445.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/89865161-2387-4492-A4C2-11E1800E689F.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/8f204691-8940-44b0-a8d2-92495e801100.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/92E7FD9E-E8C5-46EC-86A6-74907C2786F8.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/97ada18e-e5b2-471a-baf5-4316989b7afe.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/9DD74351-541E-4001-B05B-4EF30468494D.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/9EED9898-4365-4793-B98B-C3E9E2ABE0F8.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/A0B45BFE-4B4A-4367-9E09-29491DC81DB5.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/A11BF1B6-F3B7-4E38-8ECC-365A3CCAD33A Copy.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/A1C7910F-ED3F-4926-85D3-72D95A3C5A8D.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/AD956E08-3308-4232-91C8-B678E68B22D4.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/AF5B4064-FEDD-4847-A288-FD172E30958E.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/B1F9713B-FB91-47F5-BDDE-8DAEA95DFC77.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/B23C26CD-D6B5-4A1F-B766-FFEC64536100.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/B86C3B5D-F032-4D66-832D-526661DFFFE8.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/C0D5A0BA-3B11-4CD3-897E-2ECF8E93FC3D.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/C4A4E477-5BAC-475D-B87E-6D65726EB011.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/C6122A22-6B7C-4679-B95A-B9D51360557E.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/CFDC2E2F-90C4-4D63-9FD4-167397AFD86C.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/D4CAB9C3-E050-448B-80C6-89F35DE87C09-edited.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/D4CAB9C3-E050-448B-80C6-89F35DE87C09.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/D5AE6CA5-13C5-426A-9F15-CF5C6151877E.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/D929E119-0186-4F33-89AA-942ADB23BCD1.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/ED1CEC34-CB22-45D0-8210-D903FBFB0BBA.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/EE245DFF-7EB6-4202-9CAC-522E5F6082A2(1).jpg` | `IN-PLACE` | ❌ No (No JSON) | ❌ No (No JSON) |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/EE245DFF-7EB6-4202-9CAC-522E5F6082A2.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/F1008A44-BEBB-4E2C-BFC0-50DC479C3F54.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/F13821C9-2091-4FB2-862B-7BBA06CC0243.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/F1D46AAF-9DFA-48A9-A75D-523B6168444C.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/F9EC96A7-3C18-461D-8993-5F50DF71A9BA.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/GPTempDownload(1).jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/GPTempDownload.jpg` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG-20221225-WA0035.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG-20221226-WA0068.jpg` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0028.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0028.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0069.JPG` | `IN-PLACE` | ✅ Yes | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0085.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0085.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0104.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0104.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0150.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0150.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0163.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0163.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0169.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0169.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0174 Copy.JPG` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0174.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0174.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0199.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0199.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0208.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0208.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0220.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0220.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0232.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0232.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0233.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0233.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0270.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0270.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0271.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0271.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0282.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0282.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0293.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0294.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0294.MP4` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0296.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0305.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0306.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0309.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0311.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0318.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0342.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0345.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0364.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0366.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |
+| `/Volumes/personal_folder/Media/Takeout/Google Photos/LIC Slideshow/IMG_0381.HEIC` | `IN-PLACE` | ❌ No | ✅ Yes |

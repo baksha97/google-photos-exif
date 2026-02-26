@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh repo fork:*)",
+      "Bash(git remote add:*)",
+      "Bash(gh pr create:*)",
+      "Bash(yarn add:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node -e:*)"
+    ]
+  }
+}

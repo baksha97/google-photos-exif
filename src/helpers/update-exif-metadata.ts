@@ -1,4 +1,4 @@
-import { exiftool } from 'exiftool-vendored';
+import { ExifTool } from 'exiftool-vendored';
 import { doesFileSupportExif } from './does-file-support-exif';
 import { promises as fspromises } from 'fs';
 import { MediaFileInfo } from '../models/media-file-info';
@@ -6,7 +6,7 @@ import { resolve } from 'path';
 
 const { unlink, copyFile } = fspromises;
 
-export async function updateExifMetadata(fileInfo: MediaFileInfo, timeTaken: string, errorDir: string): Promise<void> {
+export async function updateExifMetadata(fileInfo: MediaFileInfo, timeTaken: string, errorDir: string, exiftool: ExifTool): Promise<void> {
   if (!doesFileSupportExif(fileInfo.outputFilePath)) {
     return;
   }

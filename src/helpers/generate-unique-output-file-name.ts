@@ -11,14 +11,14 @@ import { basename, extname } from 'path';
  *
  * For example if the array contains `picture.jpg` and `picture_1.jpg` then this will return `picture_2.jpg`
  */
-export function generateUniqueOutputFileName(filePath: string, allUsedFileNamesLowerCased: string[]): string {
+export function generateUniqueOutputFileName(filePath: string, allUsedFileNamesLowerCased: Set<string>): string {
   const originalFileName = basename(filePath);
   const originalFileExtension = extname(filePath);
   const originalFileNameWithoutExtension = basename(filePath, originalFileExtension);
   let counter = 1;
 
   let outputFileName = originalFileName;
-  while (allUsedFileNamesLowerCased.includes(outputFileName.toLowerCase())) {
+  while (allUsedFileNamesLowerCased.has(outputFileName.toLowerCase())) {
     outputFileName = `${originalFileNameWithoutExtension}_${counter}${originalFileExtension}`;
     counter++;
   }

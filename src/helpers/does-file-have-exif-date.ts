@@ -1,8 +1,8 @@
-import { exiftool } from 'exiftool-vendored';
+import { ExifTool } from 'exiftool-vendored';
 import { isNullOrUndefined } from './is-null-or-undefined';
 import { doesFileSupportExif } from './does-file-support-exif'
 
-export async function doesFileHaveExifDate(filePath: string): Promise<boolean> {
+export async function doesFileHaveExifDate(filePath: string, exiftool: ExifTool): Promise<boolean> {
   if (!doesFileSupportExif(filePath)) {
     return false;
   }

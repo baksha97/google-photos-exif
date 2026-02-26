@@ -24,6 +24,12 @@ yarn
 yarn start --inputDir ~/takeout --outputDir ~/output --errorDir ~/error
 ```
 
+To update files in-place instead of copying them to an output directory, use the `--inPlace` flag (this will ignore `--outputDir`):
+
+```
+yarn start --inputDir ~/takeout --inPlace --errorDir ~/error
+```
+
 
 ## Background
 
@@ -93,11 +99,12 @@ The first step to using this tool is to request & download a `Google Takeout`. A
 
 ## What inputs do I need to provide?
 
-The tool takes in three parameters:
+The tool takes in the following parameters:
 
 1. an `inputDir` directory path containing the extracted Google Takeout.
-2. an `outputDir` directory path where processed files will be moved to. This needs to be an empty directory and can be anywhere on the disk. 
+2. an `outputDir` directory path where processed files will be moved to. This needs to be an empty directory and can be anywhere on the disk. (Can be omitted if using `--inPlace`)
 3. an `errorDir` directory path where images with bad EXIF data that fail to process will be moved to. The folder can be empty.
+4. an optional `--inPlace` flag to update the files in the input directory instead of copying them to an output directory. If this flag is used, you do not need to provide an `outputDir`.
 
 The `inputDir` needs to be a single directory containing an _extracted_ zip from Google takeout. As described in the section above, it is important that the zip has been extracted into a directory (this tool doesn't extract zips for you) and that it is a single folder containing the whole Takeout (or if coming from multiple archives, that they have been properly merged together). 
 

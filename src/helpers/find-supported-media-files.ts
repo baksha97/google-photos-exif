@@ -7,14 +7,12 @@ import { findFilesWithExtensionRecursively } from './find-files-with-extension-r
 import { generateUniqueOutputFileName } from './generate-unique-output-file-name';
 import { getCompanionJsonPathForMediaFile } from './get-companion-json-path-for-media-file';
 
-export async function findSupportedMediaFiles(inputDir: string, outputDir: string): Promise<MediaFileInfo[]> {
+export async function* findSupportedMediaFiles(inputDir: string, outputDir?: string): AsyncGenerator<MediaFileInfo> {
   const supportedMediaFileExtensions = CONFIG.supportedMediaFileTypes.map(fileType => fileType.extension);
-  const mediaFilePaths = await findFilesWithExtensionRecursively(inputDir, supportedMediaFileExtensions);
 
-  const mediaFiles: MediaFileInfo[] = [];
-  const allUsedOutputFilesLowerCased: string[] = [];
+  const allUsedOutputFilesLowerCased = new Set<string>();
 
-  for (const mediaFilePath of mediaFilePaths) {
+  for await (const mediaFilePath of findFilesWithExtensionRecursively(inputDir, supportedMediaFileExtensions)) {
     const mediaFileName = basename(mediaFilePath);
     const mediaFileExtension = extname(mediaFilePath);
     const supportsExif = doesFileSupportExif(mediaFilePath);
@@ -23,10 +21,10 @@ export async function findSupportedMediaFiles(inputDir: string, outputDir: strin
     const jsonFileName = jsonFilePath ? basename(jsonFilePath) : null;
     const jsonFileExists = jsonFilePath ? existsSync(jsonFilePath) : false;
 
-    const outputFileName = generateUniqueOutputFileName(mediaFilePath, allUsedOutputFilesLowerCased);
-    const outputFilePath = resolve(outputDir, outputFileName);
+    const outputFileName = outputDir ? generateUniqueOutputFileName(mediaFilePath, allUsedOutputFilesLowerCased) : mediaFileName;
+    const outputFilePath = outputDir ? resolve(outputDir, outputFileName) : mediaFilePath;
 
-    mediaFiles.push({
+    const mediaFileInfo: MediaFileInfo = {
       mediaFilePath,
       mediaFileName,
       mediaFileExtension,
@@ -36,9 +34,9 @@ export async function findSupportedMediaFiles(inputDir: string, outputDir: strin
       jsonFileExists,
       outputFileName,
       outputFilePath,
-    });
-    allUsedOutputFilesLowerCased.push(outputFileName.toLowerCase());
-  }
+    };
 
-  return mediaFiles;
+    allUsedOutputFilesLowerCased.add(outputFileName.toLowerCase());
+    yield mediaFileInfo;
+  }
 }
