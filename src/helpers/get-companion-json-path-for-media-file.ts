@@ -45,6 +45,9 @@ export function getCompanionJsonPathForMediaFile(mediaFilePath: string): string|
     const counter = nameWithCounterMatch?.groups?.['counter'];
     potentialJsonFileNames.push(`${name}${mediaFileExtension}.supplemental-metadata${counter}.json`)
   }
+  // Note: for Live Photo pairs (e.g. foo(1).MP4 + foo(1).HEIC), Google Takeout creates only ONE JSON
+  // using the primary file's extension (e.g. foo.HEIC.supplemental-metadata(1).json). The MP4 candidate
+  // above won't match it. We handle that below with a glob after the exact-match loop.
 
   // Sometimes the media filename ends with extra dash (eg. filename_n-.jpg + filename_n.json)
   const endsWithExtraDash = mediaFileNameWithoutExtension.endsWith('_n-');
@@ -69,13 +72,21 @@ export function getCompanionJsonPathForMediaFile(mediaFilePath: string): string|
     }
   }
 
-  // If we still don't have a match, use glob. This has a long runtime, but will match filenames which have for 
+  // If we still don't have a match, use glob. This has a long runtime, but will match filenames which have for
   // example truncated tails.
   const potentialJsonFileNamePatterns: string[] = [
     `${mediaFileNameWithoutExtension.slice(0,-1)}*.json`,
   ]
+  // For counter-suffix files (e.g. foo(1).mp4), the exact candidate uses the media file's own extension,
+  // but for Live Photo pairs Google Takeout uses the primary extension (e.g. HEIC) for all duplicates.
+  // Add a glob that matches any extension: foo*(1).json → matches foo.HEIC.supplemental-metadata(1).json
+  if (nameWithCounterMatch) {
+    const name = nameWithCounterMatch?.groups?.['name'];
+    const counter = nameWithCounterMatch?.groups?.['counter'];
+    potentialJsonFileNamePatterns.push(`${name}*${counter}.json`);
+  }
   for (const potentialJsonFileNamePattern of potentialJsonFileNamePatterns) {
-    const glob_path = join(directoryPath, `${mediaFileNameWithoutExtension.slice(0,-1)}*.json`)
+    const glob_path = join(directoryPath, potentialJsonFileNamePattern)
     const jsonFilePathes = globSync( glob_path, {windowsPathsNoEscape: isWindows()})
     if (jsonFilePathes[0]) {
       return jsonFilePathes[0]
